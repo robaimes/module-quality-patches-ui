@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Rob Aimes - https://aimes.dev/
+ * https://github.com/robaimes
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aimes_quality_patches_grid.aimes_quality_patches_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>aimes_quality_patches_columns</spinner>
+        <deps>
+            <dep>aimes_quality_patches_grid.aimes_quality_patches_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="aimes_quality_patches_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">Id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Aimes\QualityPatchesUi\Ui\DataProvider\QualityPatchesProvider"
+                      name="aimes_quality_patches_grid_data_source">
+            <settings>
+                <requestFieldName>Id</requestFieldName>
+                <primaryFieldName>Id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="aimes_quality_patches_columns">
+        <settings>
+            <storageConfig>
+                <provider>aimes_quality_patches_grid.aimes_quality_patches_grid.listing_top.bookmarks</provider>
+                <namespace>current.${ $.storageConfig.root}</namespace>
+            </storageConfig>
+            <childDefaults>
+                <param name="controlVisibility" xsi:type="boolean">true</param>
+            </childDefaults>
+        </settings>
+        <column name="Id" sortOrder="10">
+            <settings>
+                <label translate="true">Patch ID</label>
+                <visible>true</visible>
+                <dataType>text</dataType>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="Status" sortOrder="20">
+            <settings>
+                <label translate="true">Status</label>
+                <visible>true</visible>
+                <dataType>text</dataType>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="Title" sortOrder="30">
+            <settings>
+                <label translate="true">Title</label>
+                <visible>true</visible>
+                <dataType>text</dataType>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="Category" sortOrder="40">
+            <settings>
+                <label translate="true">Category</label>
+                <visible>false</visible>
+                <dataType>text</dataType>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="Origin" sortOrder="50">
+            <settings>
+                <label translate="true">Origin</label>
+                <visible>false</visible>
+                <dataType>text</dataType>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="Details" sortOrder="60">
+            <settings>
+                <bodyTmpl>Magento_Catalog/grid/cells/preserved</bodyTmpl>
+                <label translate="true">Details</label>
+                <visible>false</visible>
+                <dataType>text</dataType>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+    </columns>
+</listing>

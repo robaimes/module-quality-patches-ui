@@ -1,0 +1,26 @@
+{
+    "name": "aimes/module-quality-patches-ui",
+    "type": "magento2-module",
+    "description": "Admin panel GUI for reporting status of Magento Quality Patches",
+    "license": [
+        "GPL-3.0-or-later"
+    ],
+    "authors": [
+        {
+            "name": "Rob Aimes",
+            "email": "rob@aimes.dev",
+            "homepage": "https://aimes.dev"
+        }
+    ],
+    "require": {
+        "magento/quality-patches": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aimes\\QualityPatchesUi\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

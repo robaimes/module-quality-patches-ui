@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Rob Aimes - https://aimes.dev/
+ * https://github.com/robaimes
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aimes_QualityPatchesUi::patches"
+             title="Patch Status"
+             translate="title"
+             module="Aimes_QualityPatchesUi"
+             sortOrder="150"
+             parent="Magento_Reports::report"
+             resource="Aimes_QualityPatchesUi::view" />
+        <add id="Aimes_QualityPatchesUi::quality_patches"
+             title="Quality Patches"
+             translate="title"
+             module="Aimes_QualityPatchesUi"
+             sortOrder="10"
+             parent="Aimes_QualityPatchesUi::patches"
+             action="aimes_patches/index"
+             resource="Aimes_QualityPatchesUi::view"/>
+    </menu>
+</config>
