@@ -22,14 +22,10 @@ Please install this module via Composer. This module is hosted on [Packagist][pa
 ## Usage
 Navigate to `Reports -> Patch Status -> Quality Patches` in the admin area
 
-> NOTE: Filtering and sorting are not currently supported
-
 ## Preview
 ![preview](https://user-images.githubusercontent.com/4225347/221297200-e22477f1-75fa-4b38-804e-4ac6fe6aad7d.png)
 
 ## Planned Improvements
-- Working sorting
-- Working filtering
 - Create separate grid to display Composer patch status (eg. via [`cweagans/composer-patches`][composer-patches])
 
 ## Licence

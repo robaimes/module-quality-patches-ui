@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Rob Aimes - https://aimes.dev/
+ * https://github.com/robaimes
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Virtual filters since we cannot process this data via collection without resource/database storage-->
+    <virtualType name="QualityPatchUiStatusFilter"
+                 type="Aimes\QualityPatchesUi\Model\Source\PatchFilter">
+        <arguments>
+            <argument name="filterKey" xsi:type="string">Status</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="QualityPatchUiCategoryFilter"
+                 type="Aimes\QualityPatchesUi\Model\Source\PatchFilter">
+        <arguments>
+            <argument name="filterKey" xsi:type="string">Category</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="QualityPatchUiOriginFilter"
+                 type="Aimes\QualityPatchesUi\Model\Source\PatchFilter">
+        <arguments>
+            <argument name="filterKey" xsi:type="string">Origin</argument>
+        </arguments>
+    </virtualType>
+</config>
