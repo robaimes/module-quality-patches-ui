@@ -23,7 +23,10 @@ Please install this module via Composer. This module is hosted on [Packagist][pa
 Navigate to `Reports -> Patch Status -> Quality Patches` in the admin area
 
 ## Preview
-![preview](https://user-images.githubusercontent.com/4225347/221297200-e22477f1-75fa-4b38-804e-4ac6fe6aad7d.png)
+![preview](https://user-images.githubusercontent.com/4225347/222785352-a849b27d-2de0-4e4e-9db4-aac77cbd14de.png)
+![preview filtering](https://user-images.githubusercontent.com/4225347/222785473-d04b9e5f-d965-4e3f-b4ff-e86756750fbe.png)
+
+
 
 ## Planned Improvements
 - Create separate grid to display Composer patch status (eg. via [`cweagans/composer-patches`][composer-patches])
