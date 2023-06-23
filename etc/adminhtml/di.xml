@@ -7,7 +7,7 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- Virtual filters since we cannot process this data via collection without resource/database storage-->
+    <!-- Virtual filters since we cannot process this data via collection without resource/database storage -->
     <virtualType name="QualityPatchUiStatusFilter"
                  type="Aimes\QualityPatchesUi\Model\Source\PatchFilter">
         <arguments>
@@ -26,4 +26,17 @@
             <argument name="filterKey" xsi:type="string">Origin</argument>
         </arguments>
     </virtualType>
+
+    <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
+        <arguments>
+            <argument name="configurationsMap" xsi:type="array">
+                <item name="composerPackageUpdateNotification" xsi:type="array">
+                    <item name="renderer" xsi:type="const">Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Aimes_QualityPatchesUi::messages/update-available.phtml</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>
