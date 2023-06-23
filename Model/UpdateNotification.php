@@ -4,23 +4,31 @@
  * https://github.com/robaimes
  */
 
-namespace Aimes\QualityPatchesUi\Observer;
+namespace Aimes\QualityPatchesUi\Model;
 
 use Composer\InstalledVersions;
 use Composer\Semver\Comparator;
 use Exception;
 use Magento\Framework\Composer\MagentoComposerApplicationFactory;
-use Magento\Framework\Event\Observer;
-use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Message\ManagerInterface;
 use Magento\Framework\Serialize\Serializer\Json;
 
-class UpdateNotification implements ObserverInterface
+class UpdateNotification
 {
+    /** @var ManagerInterface */
     private ManagerInterface $messageManager;
+
+    /** @var MagentoComposerApplicationFactory */
     private MagentoComposerApplicationFactory $composerApplicationFactory;
+
+    /** @var Json */
     private Json $json;
 
+    /**
+     * @param ManagerInterface $messageManager
+     * @param MagentoComposerApplicationFactory $composerApplicationFactory
+     * @param Json $json
+     */
     public function __construct(
         ManagerInterface $messageManager,
         MagentoComposerApplicationFactory $composerApplicationFactory,
@@ -34,11 +42,9 @@ class UpdateNotification implements ObserverInterface
     /**
      * Add messages to inform the user that an update is available, and therefore more patches that may assist
      *
-     * @param Observer $observer
-     *
      * @return void
      */
-    public function execute(Observer $observer): void
+    public function addMessages(): void
     {
         $packageReleaseNotesMapping = [
             'magento/magento-cloud-patches' => 'https://experienceleague.adobe.com/docs/commerce-cloud-service/user-guide/release-notes/cloud-patches.html',
@@ -47,6 +53,11 @@ class UpdateNotification implements ObserverInterface
 
         foreach ($packageReleaseNotesMapping as $packageName => $releaseNotesUrl) {
             $packageInfo = $this->getPackageInfo($packageName);
+
+            if (!$packageInfo) {
+                continue;
+            }
+
             $isOutdated = Comparator::greaterThan($packageInfo['latest_version'], $packageInfo['current_version']);
 
             if (!$isOutdated) {
@@ -68,9 +79,9 @@ class UpdateNotification implements ObserverInterface
     /**
      * @param string $packageName
      *
-     * @return array
+     * @return array|null
      */
-    private function getPackageInfo(string $packageName): array
+    private function getPackageInfo(string $packageName): ?array
     {
         $application = $this->composerApplicationFactory->create();
         $arguments = [
@@ -84,7 +95,7 @@ class UpdateNotification implements ObserverInterface
             $composerResult = $this->json->unserialize($application->runComposerCommand($arguments));
             $latestVersion = $composerResult['latest'];
         } catch (Exception $exception) {
-            return [];
+            return null;
         }
 
         return [
