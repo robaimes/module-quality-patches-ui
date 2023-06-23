@@ -11,16 +11,17 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 ?>
 <div>
-    <div>
+    <strong>
         <?= $escaper->escapeHtml(__(
             'An update for the <code>%package_name</code> package is available.',
             [
                 'package_name' => $block->getPackageName(),
             ]
         ), ['code']); ?>
-    </div>
+    </strong>
     <br/>
-    <div>
+    <br/>
+    <span>
         <?= $escaper->escapeHtml(__(
             'Your current version is %current_version and the latest version available is %latest_version.',
             [
@@ -28,14 +29,14 @@ use Magento\Framework\Escaper;
                 'latest_version' => $block->getLatestVersion(),
             ]
         )); ?>
-    </div>
+    </span>
     <br/>
-    <div>
+    <span>
         <?= $escaper->escapeHtml(__(
             'You can review the release notes on <a href="%url">Adobe Experience League</a>.',
             [
                 'url' => $block->getReleaseNotesUrl(),
             ]
         ), ['a']); ?>
-    </div>
+    </span>
 </div>
