@@ -13,6 +13,7 @@
         }
     ],
     "require": {
+        "composer/composer": "^2.0",
         "magento/magento-cloud-patches": "^1.0.20",
         "magento/quality-patches": "^1.1"
     },

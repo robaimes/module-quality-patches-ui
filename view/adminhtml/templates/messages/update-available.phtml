@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © Rob Aimes - https://aimes.dev/
+ * https://github.com/robaimes
+ */
+
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+?>
+<div>
+    <div>
+        <?= $escaper->escapeHtml(__(
+            'An update for the <code>%package_name</code> package is available.',
+            [
+                'package_name' => $block->getPackageName(),
+            ]
+        ), ['code']); ?>
+    </div>
+    <br/>
+    <div>
+        <?= $escaper->escapeHtml(__(
+            'Your current version is %current_version and the latest version available is %latest_version.',
+            [
+                'current_version' => $block->getCurrentVersion(),
+                'latest_version' => $block->getLatestVersion(),
+            ]
+        )); ?>
+    </div>
+    <br/>
+    <div>
+        <?= $escaper->escapeHtml(__(
+            'You can review the release notes on <a href="%url">Adobe Experience League</a>.',
+            [
+                'url' => $block->getReleaseNotesUrl(),
+            ]
+        ), ['a']); ?>
+    </div>
+</div>
