@@ -23,20 +23,15 @@ use Magento\Framework\Escaper;
     <br/>
     <span>
         <?= $escaper->escapeHtml(__(
-            'Your current version is %current_version and the latest version available is %latest_version.',
+            'Your current version is <code>%current_version</code> and the latest version available is <code>%latest_version</code>.',
             [
                 'current_version' => $block->getCurrentVersion(),
                 'latest_version' => $block->getLatestVersion(),
             ]
-        )); ?>
+        ), ['code']); ?>
     </span>
     <br/>
-    <span>
-        <?= $escaper->escapeHtml(__(
-            'You can review the release notes on <a href="%url">Adobe Experience League</a>.',
-            [
-                'url' => $block->getReleaseNotesUrl(),
-            ]
-        ), ['a']); ?>
-    </span>
+    <a href="<?= $escaper->escapeUrl($block->getReleaseNotesUrl()) ?>" target="_blank" rel="noopener noreferrer">
+        <?= $escaper->escapeHtml(__('View release notes')); ?>
+    </a>
 </div>
