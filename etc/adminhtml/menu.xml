@@ -8,20 +8,44 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
+        <!-- Substratum menu items -->
+        <add id="Aimes_QualityPatchesUi::quality_patches_ui_title"
+             title="Quality Patches UI"
+             translate="title"
+             module="Aimes_QualityPatchesUi"
+             parent="Aimes_Substratum::substratum_menu"
+             sortOrder="20"
+             resource="Aimes_QualityPatchesUi::view"
+             dependsOnModule="Aimes_Substratum"/>
+
+        <add id="Aimes_QualityPatchesUi::view_grid"
+             title="View Grid"
+             translate="title"
+             module="Aimes_QualityPatchesUi"
+             parent="Aimes_QualityPatchesUi::quality_patches_ui_title"
+             resource="Aimes_QualityPatchesUi::view"
+             sortOrder="10"
+             action="aimes_patches/index"
+             dependsOnModule="Aimes_Substratum"/>
+
+        <!-- Alternative menu items -->
         <add id="Aimes_QualityPatchesUi::patches"
-             title="Patch Status"
+             title="Quality Patches UI"
              translate="title"
              module="Aimes_QualityPatchesUi"
              sortOrder="150"
              parent="Magento_Reports::report"
-             resource="Aimes_QualityPatchesUi::view" />
+             resource="Aimes_QualityPatchesUi::view"
+             dependsOnModule="Magento_Reports"/>
+
         <add id="Aimes_QualityPatchesUi::quality_patches"
-             title="Quality Patches"
+             title="View Grid"
              translate="title"
              module="Aimes_QualityPatchesUi"
              sortOrder="10"
              parent="Aimes_QualityPatchesUi::patches"
              action="aimes_patches/index"
-             resource="Aimes_QualityPatchesUi::view"/>
+             resource="Aimes_QualityPatchesUi::view"
+             dependsOnModule="Magento_Reports"/>
     </menu>
 </config>

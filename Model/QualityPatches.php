@@ -79,12 +79,39 @@ class QualityPatches
 
         try {
             $application->get(Status::NAME)->run($input, $output);
-            $this->patches = $this->json->unserialize($output->fetch());
+            $patchInfo = $this->json->unserialize($output->fetch());
+
+            // Fix the seemingly random newline characters breaking up words
+            foreach ($patchInfo as &$patch) {
+                $patch['Title'] = $this->removeNewlines($patch['Title']);
+            }
+
+            $this->patches = $patchInfo;
         } catch (ExceptionInterface $exception) {
             $this->patches = [];
         }
 
         return $this->patches;
+    }
+
+    /**
+     * Get patch by name/ID for the current Magento/software version
+     *
+     * @param string $id
+     *
+     * @return array|null
+     */
+    public function getPatchById(string $id): ?array
+    {
+        $patches = $this->getAllPatches();
+
+        foreach ($patches as $key => $patch) {
+            if ($patch['Id'] === $id) {
+                return $patches[$key];
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -111,22 +138,14 @@ class QualityPatches
     }
 
     /**
-     * Get patch by name/ID for the current Magento/software version
+     * Remove newline characters from the JSON output
      *
-     * @param string $id
+     * @param string $string
      *
-     * @return array|null
+     * @return string
      */
-    public function getPatchById(string $id): ?array
+    private function removeNewlines(string $string): string
     {
-        $patches = $this->getAllPatches();
-
-        foreach ($patches as $key => $patch) {
-            if ($patch['Id'] === $id) {
-                return $patches[$key];
-            }
-        }
-
-        return null;
+        return str_replace("\n", '', $string);
     }
 }

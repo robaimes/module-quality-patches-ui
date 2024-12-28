@@ -6,37 +6,15 @@
 
 namespace Aimes\QualityPatchesUi\Model;
 
-use Composer\InstalledVersions;
-use Composer\Semver\Comparator;
-use Exception;
-use Magento\Framework\Composer\MagentoComposerApplicationFactory;
-use Magento\Framework\Message\ManagerInterface;
-use Magento\Framework\Serialize\Serializer\Json;
+use Aimes\Substratum\Model\ComposerVersion;
+use Magento\Framework\Message\ManagerInterface;;
 
 class UpdateNotification
 {
-    /** @var ManagerInterface */
-    private ManagerInterface $messageManager;
-
-    /** @var MagentoComposerApplicationFactory */
-    private MagentoComposerApplicationFactory $composerApplicationFactory;
-
-    /** @var Json */
-    private Json $json;
-
-    /**
-     * @param ManagerInterface $messageManager
-     * @param MagentoComposerApplicationFactory $composerApplicationFactory
-     * @param Json $json
-     */
     public function __construct(
-        ManagerInterface $messageManager,
-        MagentoComposerApplicationFactory $composerApplicationFactory,
-        Json $json
+        private readonly ManagerInterface $messageManager,
+        private readonly ComposerVersion $composerVersioning,
     ) {
-        $this->messageManager = $messageManager;
-        $this->composerApplicationFactory = $composerApplicationFactory;
-        $this->json = $json;
     }
 
     /**
@@ -52,55 +30,19 @@ class UpdateNotification
         ];
 
         foreach ($packageReleaseNotesMapping as $packageName => $releaseNotesUrl) {
-            $packageInfo = $this->getPackageInfo($packageName);
+            $isUpdateAvailable = $this->composerVersioning->isUpdateAvailable($packageName);
 
-            if (!$packageInfo) {
+            if (!$isUpdateAvailable) {
                 continue;
             }
 
-            $isOutdated = Comparator::greaterThan($packageInfo['latest_version'], $packageInfo['current_version']);
-
-            if (!$isOutdated) {
-                continue;
-            }
+            $packageInfo = $this->composerVersioning->getPackageInfo($packageName);
+            $packageInfo['release_notes_url'] = $releaseNotesUrl;
 
             $this->messageManager->addComplexNoticeMessage(
-                'composerPackageUpdateNotification',
-                [
-                    'package_name' => $packageName,
-                    'current_version' => $packageInfo['current_version'],
-                    'latest_version' => $packageInfo['latest_version'],
-                    'release_notes_url' => $releaseNotesUrl,
-                ]
+                'qualityPatchesUpdateNotification',
+                $packageInfo
             );
         }
-    }
-
-    /**
-     * @param string $packageName
-     *
-     * @return array|null
-     */
-    private function getPackageInfo(string $packageName): ?array
-    {
-        $application = $this->composerApplicationFactory->create();
-        $arguments = [
-            'command' => 'outdated',
-            'package' => $packageName,
-            '--format' => 'json',
-        ];
-
-        try {
-            $currentVersion = InstalledVersions::getPrettyVersion($packageName);
-            $composerResult = $this->json->unserialize($application->runComposerCommand($arguments));
-            $latestVersion = $composerResult['latest'];
-        } catch (Exception $exception) {
-            return null;
-        }
-
-        return [
-            'current_version' => $currentVersion,
-            'latest_version' => $latestVersion,
-        ];
     }
 }

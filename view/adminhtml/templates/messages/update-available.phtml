@@ -13,9 +13,9 @@ use Magento\Framework\Escaper;
 <div>
     <strong>
         <?= $escaper->escapeHtml(__(
-            'An update for the <code>%package_name</code> package is available.',
+            'An update for the <code>%package_name</code> package is available. Additional patches may be available.',
             [
-                'package_name' => $block->getPackageName(),
+                'package_name' => $block->getName(),
             ]
         ), ['code']); ?>
     </strong>
@@ -26,7 +26,7 @@ use Magento\Framework\Escaper;
             'Your current version is <code>%current_version</code> and the latest version available is <code>%latest_version</code>.',
             [
                 'current_version' => $block->getCurrentVersion(),
-                'latest_version' => $block->getLatestVersion(),
+                'latest_version' => $block->getLatest(),
             ]
         ), ['code']); ?>
     </span>

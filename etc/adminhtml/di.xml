@@ -30,7 +30,7 @@
     <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
         <arguments>
             <argument name="configurationsMap" xsi:type="array">
-                <item name="composerPackageUpdateNotification" xsi:type="array">
+                <item name="qualityPatchesUpdateNotification" xsi:type="array">
                     <item name="renderer" xsi:type="const">Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
                     <item name="data" xsi:type="array">
                         <item name="template" xsi:type="string">Aimes_QualityPatchesUi::messages/update-available.phtml</item>
