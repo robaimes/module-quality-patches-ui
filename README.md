@@ -5,7 +5,7 @@
 
 ## Features
 - Display Magento Quality Patch Status as a grid, without need for CLI access, in the admin panel
-- Notify users of any updates available to the folowing packages (when viewing the grid), as a new version may contain new patches:
+- Notify users of any updates available to the following packages (when viewing the grid), as a new version may contain new patches:
   - `magento/magento-cloud-patches`
   - `magento/quality-patches`
 
