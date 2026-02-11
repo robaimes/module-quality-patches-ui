@@ -1,7 +1,7 @@
 # Aimes_QualityPatchesUi
-!["Supported Magento Version"][magento-badge] !["Latest Release"][release-badge]
+!["Supported Magento Version"][magento-badge] !["Supported Adobe Commerce Version"][adobe-commerce-badge] !["Latest Release"][release-badge]
 
-* Compatible with _Magento Open Source_ and _Adobe Commerce_ `2.4.x`
+Compatible with _Magento Open Source_ and _Adobe Commerce_ `2.4.x`
 
 ## Features
 - Display Magento Quality Patch Status as a grid, without need for CLI access, in the admin panel
@@ -30,9 +30,9 @@ Navigate to `Reports -> Patch Status -> Quality Patches` in the admin area
 ## Licence
 [GPLv3][gpl] © [Rob Aimes][author]
 
-[magento-badge]:https://img.shields.io/badge/magento-2.3.x%20%7C%202.4.x-orange.svg?logo=magento&style=for-the-badge
-[release-badge]:https://img.shields.io/github/v/release/robaimes/module-quality-patches-ui
+[magento-badge]:https://img.shields.io/badge/magento-2.4.x-orange.svg?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADz0lEQVR4AZSVXYhVVRTHf+vcGYoYyMGMeigyyaSSHoJ6iGIy8kF6yGhmwsfog8KSqCjo5b7Zg0VkHzAFPZZ3RIekl5Kah+qhR0kU6ZOCwigHRdE795zlf+19zp3Rex10s9fZa//X9zpn71OwwnAwf5ZR6uFP8rA/wQT1CFno1NuhyyUD+AQjBm4zLPokN5RTfOwVB934tpzmQ2FrQhY6oTvUu8CBADJsBdk8PW9T+BSvy+kv5jyNg4HK4nlhv0r2ChoWupO0wk7bC2Y/QNh6ZD1LaSIZP+ZHOOrOW7K4RhTzpByfVrAIMuawq5rmiE/zaNgEuVoq3EI5KAUIQIhbzmRjNcVXwvZTcVtKWZoK9JmVbLCCuxRkTnKhmhUbJDsgmy9VwR39tpEtCymaqde+ldXq7W7Bh9SKR4QRAvE/KuMHWnvZZvv42z7n96LDVoPNkh1CjFY0trhxWO/qHd/GuGDFxYrEqDU+yvdWsV0BsQTyjyp4qpjlPpX+nUeP23onNQn7WrK7pbod4wRh6LiSedl7fKOAgvHUIm7iKgHjItVCT+vbdpZ1tpdPxec5TmFtqiDmyXaAdfjAutwqTx8pMSeP1fEugs2KC4SgG4DoqHV41Q5wRnyaat271QJvpo0e1fXsLCfZKTZNm2OhtYcX1JO/Im2BXY4ln0uZCDRRzP7h0texvpriZ3N24KyiGc51Un6jmuQnte7mgLWOaY1EURCJSSNXkNhljxNUaVdxp9Z1ch6tWxTfzK6cBB/y24Ph6qSV2OWP4QEaDeNcw6rWflZytcQ3OrnNffWGGQxgdW6h4TVvsbkENTqrat2L1AYD+EUasR2GBX4ZNBggjP4dnk2IrpSWB2jyXKkhl+dfB65RzAFy//K9b3qFjbRZrzzkKOtzF3KAP9PX8l/tr1WveWnqqvQdZQSZZjuWjfwVFSk957jpPxLSfNnN07Mu9+uy+kTGzpraWVQT2btUC07rmafRP+UZ0NOIxHry8Z6dYxMaMqsvOzCbY6HV4RldeFsgKWtZmjrNm/1xbtRv8xbxE7YkypxT6jp/SD522BecCufS8VRqMN6m0HFv6Zb8Tec3H7CoQOaSg3Gvj3BMv83D4jfq3gkMpZJP/T2ctX384ROMuCQWZx9IAbRibSo5L12BaKdOwrUcNHhNZZ/RisYYTv67GSdVyYuU/CAcZOOytWh37RyNfgDxaVpbgaTgYDbDonXYZYusxZiRc6FE8rvlfK3N8r6oRMNkY21yNdo3cyBAIzAZBB/3uu3nuO3hOd33m8x5UH1+SY7/D1norETnAQAA//+Y9KBSAAAABklEQVQDAGztYjr3b7CxAAAAAElFTkSuQmCC
+[adobe-commerce-badge]:https://img.shields.io/badge/adobe%20commerce-2.4.x-red.svg?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEBElEQVR4AZSVO4hdVRSG/73vdUJwZu4kZjIhpBFiI2IVQdTGIipoLJQQVFTwFVMJWqQLpNLWTvBRxJAmNoKvykrstBVExBdkZq6PTKYx3nPO9vvXvvdkhkwguex11utf/1pn733vzbrBp0gDp9YW9el4SWV9pGY8UrGE7diSvjEG7A15dky4IEnt+qLuSkmPmwTZinXzoqIHaXgEbEeNY8C2r61FWzMRh/xVZFCKGjQ8FYItYm1o6VSNqs9P/VBBFNb0wSSua1ZXdDv289Nwnc4UlhqsMen46rz2E27Ao2py9ryuAYkozFd1HPsA0lDFwtqyCLDUEFoYDPUc2itqbcxkpwZdJItO+lXYitS/PCOy75F2jFw2hoJXHEyKhjZ72daA+gGgbm1BD4C4H6G23qYgTuog9uEqfMn1bSq6mwvxGHiHt72FAY7PJNlgqtn0HXYlS5xrUWbqFE2S5Bx+scZ9XTt8+gZMnwE14306qBT7b3hMQ67DIa2vyF2ybWKPi10xScd4i8OAWvA9b28ADLtM9AL2bqRhsgSRet3pDRV9Ts6rFWzTnLEZ/yUnkIzECoOO4ORrZv9lOxBnyAxqeUCl75c39SPYi+QEJpqT83Kdt/LF3w9pN2BzoRSH1APWl/QkzmGkTao5iIoJIX6fuPZv6Gv0D4i3pvMQSYFtlHRw7oqeJuflfCTshHAbTkHIaeImD+RyDfE2Jp0uouGIq3jOTcH6bOQgfkrUsE6qfiKXmcyH267u0T3EH0G8ojuGtwelTw5t6i+wc3aGWRew/8Meouu1lVxTaPbQn4u6L0nx++S9c4L7p9c8AZP4wOIt8H0tVTp9BJmXb8hg7z/6DYLPHEBaSAVW1LbWXdLsLZKnn/y9RyOS177uhTKp5ekBvlvZ1LeEXOsYYVbRh9SYuB42AKIxLPrEpXktM0RjArWdTuDsJdGgWXJhHC6s58XnF2kXHD4PPGn5Ct8J6SecARL7TSFLDf48v0/PohUNKPTPspgoCwg+Kw53fd9lvWvgndK/pDyAt2kOu+NSfOxrwBDRQATNgS/i8Z3IayMdheAIYtKM9rJtvcEfyum1JZ0dL+oM/2TvYD8Fjw9YbdJ5gN62/rDJmcMN7x0v6AmfwVvuSOf4TTErvg/Xvv/R3uaqnSlJZ4mfZur3IL0NyQc29LOSvnQN0mHLApfAqmS96W6Pqn5sV4tqAAmgr2CjJG9NQ/IqsszbHGXSDls8PgAn8GJbqqhuPfmHsxMG4PgMquBMY4leQ2xvgfXA+JT1DBDz5ZXL+iJJv+IPwPruY9IHx9iY2sZNStwiGh77Y0F3QMyV14THObPCURDNxDHvdUPBrYi3abQraba1GrS6AMcE8Q5s4/ofAAD//1LB0XgAAAAGSURBVAMAZFiYxTIfQh8AAAAASUVORK5CYII=
+[release-badge]:https://img.shields.io/github/v/release/robaimes/module-quality-patches-ui?&style=for-the-badge
 [packagist]:https://packagist.org/packages/aimes/module-quality-patches-ui
 [gpl]:https://www.gnu.org/licenses/gpl-3.0.en.html
 [author]:https://aimes.dev/
-[composer-patches]:https://github.com/cweagans/composer-patches
