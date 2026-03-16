@@ -15,8 +15,19 @@ use Hyva\AdminDashboardFramework\Model\WidgetType\AbstractWidgetType;
 
 class QualityPatches extends AbstractWidgetType
 {
+    private const string PROP_CATEGORIES = 'patch_categories';
+    private const string PROP_STATUSES = 'patch_statuses';
+
+    /** @var string */
     protected string $id = 'aimes_quality_patches_ui';
 
+    /**
+     * @param WidgetAuth $widgetAuth
+     * @param WidgetConfig $widgetConfig
+     * @param PatchesModel $patches
+     * @param string $id
+     * @param array $data
+     */
     public function __construct(
         WidgetAuth $widgetAuth,
         WidgetConfig $widgetConfig,
@@ -27,6 +38,9 @@ class QualityPatches extends AbstractWidgetType
         parent::__construct($widgetAuth, $widgetConfig, $id, $data);
     }
 
+    /**
+     * @return array
+     */
     public function getConfigurableProperties(): array
     {
         $patches = $this->patches->getAllPatches();
@@ -34,7 +48,7 @@ class QualityPatches extends AbstractWidgetType
         return array_merge(
             parent::getConfigurableProperties(),
             [
-                'patch_categories' => [
+                self::PROP_CATEGORIES => [
                     'label' => __('Patch Category'),
                     'input' => [
                         'type' => 'select',
@@ -46,8 +60,9 @@ class QualityPatches extends AbstractWidgetType
                         ],
                     ],
                 ],
-                'patch_status' => [
+                self::PROP_STATUSES => [
                     'label' => __('Patch Status'),
+                    'note' => __('Status reported from the Magento Quality Patch tools may be inaccurate if your installed versions are outdated, or patches are applied via other means.'),
                     'input' => [
                         'type' => 'select',
                         'options' => $this->getUniqueValues($patches, 'Status'),
@@ -62,11 +77,16 @@ class QualityPatches extends AbstractWidgetType
         );
     }
 
+    /**
+     * @param WidgetInstanceInterface $widgetInstance
+     *
+     * @return array
+     */
     public function getDisplayData(WidgetInstanceInterface $widgetInstance)
     {
         $allPatches = $this->patches->getAllPatches();
-        $categories = $widgetInstance->getPropertyValue(self::KEY_CONFIGURABLE_PROPERTIES, 'patch_categories');
-        $statuses = $widgetInstance->getPropertyValue(self::KEY_CONFIGURABLE_PROPERTIES, 'patch_status');
+        $categories = $widgetInstance->getPropertyValue(self::KEY_CONFIGURABLE_PROPERTIES, self::PROP_CATEGORIES);
+        $statuses = $widgetInstance->getPropertyValue(self::KEY_CONFIGURABLE_PROPERTIES, self::PROP_STATUSES) ?? [];
         $filteredPatches = array_filter($allPatches, function ($patch) use ($categories, $statuses) {
             return !empty(array_intersect(explode("\n", $patch['Category']), $categories))
                 && in_array($patch['Status'], $statuses);
@@ -94,6 +114,12 @@ class QualityPatches extends AbstractWidgetType
         return $data;
     }
 
+    /**
+     * @param array $patches
+     * @param string $key
+     *
+     * @return array
+     */
     public function getUniqueValues(array $patches, string $key): array
     {
         $values = array_unique(explode("\n", implode("\n", array_column($patches, $key))));
