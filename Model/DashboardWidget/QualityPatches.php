@@ -29,6 +29,8 @@ class QualityPatches extends AbstractWidgetType
 
     public function getConfigurableProperties(): array
     {
+        $patches = $this->patches->getAllPatches();
+
         return array_merge(
             parent::getConfigurableProperties(),
             [
@@ -36,7 +38,7 @@ class QualityPatches extends AbstractWidgetType
                     'label' => __('Patch Category'),
                     'input' => [
                         'type' => 'select',
-                        'options' => $this->getUniqueCategories($this->patches->getAllPatches()),
+                        'options' => $this->getUniqueValues($patches, 'Category'),
                         'attributes' => [
                             'multiple' => true,
                             'required' => true,
@@ -44,6 +46,18 @@ class QualityPatches extends AbstractWidgetType
                         ],
                     ],
                 ],
+                'patch_status' => [
+                    'label' => __('Patch Status'),
+                    'input' => [
+                        'type' => 'select',
+                        'options' => $this->getUniqueValues($patches, 'Status'),
+                        'attributes' => [
+                            'multiple' => true,
+                            'required' => true,
+                            'size' => 3,
+                        ],
+                    ],
+                ]
             ]
         );
     }
@@ -52,8 +66,10 @@ class QualityPatches extends AbstractWidgetType
     {
         $allPatches = $this->patches->getAllPatches();
         $categories = $widgetInstance->getPropertyValue(self::KEY_CONFIGURABLE_PROPERTIES, 'patch_categories');
-        $filteredPatches = array_filter($allPatches, function ($patch) use ($categories) {
-            return !empty(array_intersect(explode("\n", $patch['Category']), $categories));
+        $statuses = $widgetInstance->getPropertyValue(self::KEY_CONFIGURABLE_PROPERTIES, 'patch_status');
+        $filteredPatches = array_filter($allPatches, function ($patch) use ($categories, $statuses) {
+            return !empty(array_intersect(explode("\n", $patch['Category']), $categories))
+                && in_array($patch['Status'], $statuses);
         });
         $data = [
             'headings' => [__('Patch ID'), __('Status'), __('Category'), __('Title')],
@@ -78,11 +94,11 @@ class QualityPatches extends AbstractWidgetType
         return $data;
     }
 
-    public function getUniqueCategories(array $patches): array
+    public function getUniqueValues(array $patches, string $key): array
     {
-        $categories = array_unique(explode("\n", implode("\n", array_column($patches, 'Category'))));
-        sort($categories);
+        $values = array_unique(explode("\n", implode("\n", array_column($patches, $key))));
+        sort($values);
 
-        return array_map(fn ($category) => ['label' => $category, 'value' => $category], $categories);
+        return array_map(fn ($value) => ['label' => $value, 'value' => $value], $values);
     }
 }
