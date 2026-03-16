@@ -40,4 +40,4 @@ Navigate to `Reports -> Patch Status -> Quality Patches` in the admin area
 [packagist]:https://packagist.org/packages/aimes/module-quality-patches-ui
 [gpl]:https://www.gnu.org/licenses/gpl-3.0.en.html
 [author]:https://aimes.dev/
-[hyva-dashbaord]:https://docs.hyva.io/hyva-commerce/features/admin-dashboard/index.html
+[hyva-dashboard]:https://docs.hyva.io/hyva-commerce/features/admin-dashboard/index.html
