@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Rob Aimes - https://aimes.dev/
+ * https://github.com/robaimes
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_AdminDashboardFramework:etc/adminhtml/hyva_dashboard_widget.xsd">
+    <widget id="aimes_quality_patches_ui">
+        <class>Aimes\QualityPatchesUi\Model\DashboardWidget\QualityPatches</class>
+        <display_type>table</display_type>
+        <title>Quality Patches</title>
+        <acl>Aimes_QualityPatchesUi::view</acl>
+        <category>system</category>
+        <tags>magento,patch,quality,report</tags>
+        <min_height>6</min_height>
+        <min_width>2</min_width>
+        <icon>folder-git-2</icon>
+    </widget>
+</config>
