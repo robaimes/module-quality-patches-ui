@@ -14,6 +14,7 @@ jobs:
         with:
           php-version: '8.4'
           tools: ergebnis/composer-normalize
-
-      - name: Run composer normalize
-        run: composer normalize --dry-run --diff
+  composer-normalize:
+    - name: Run composer normalize
+      needs: build
+      run: composer normalize --dry-run --diff
