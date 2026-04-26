@@ -1,10 +1,15 @@
 {
     "name": "aimes/module-quality-patches-ui",
-    "type": "magento2-module",
+    "require": {
+        "aimes/magento2-module-substratum": "^1.0",
+        "magento/magento-cloud-patches": "^1.0.20",
+        "magento/quality-patches": "^1.1"
+    },
     "description": "Admin panel GUI for reporting status of Magento Quality Patches",
     "license": [
         "GPL-3.0-or-later"
     ],
+    "type": "magento2-module",
     "authors": [
         {
             "name": "Rob Aimes",
@@ -12,11 +17,6 @@
             "homepage": "https://aimes.dev"
         }
     ],
-    "require": {
-        "aimes/magento2-module-substratum": "^1.0",
-        "magento/magento-cloud-patches": "^1.0.20",
-        "magento/quality-patches": "^1.1"
-    },
     "suggest": {
         "aimes/module-quality-patches-ui-hyva-dashboard-widget": "Hyvä Dashboard compatibility — Adds a Patch Status dashboard widget"
     },
