@@ -10,7 +10,7 @@ Compatible with Hyvä Commerce
 - Notify users of any updates available to the following packages (when viewing the grid), as a new version may contain new patches:
   - `magento/magento-cloud-patches`
   - `magento/quality-patches`
-- Integration with [Hyvä Admin Dashboard][hyva-dashboard]
+- Integration with [Hyvä Admin Dashboard][hyva-dashboard] via the [integration module][dashboard-integration]
 
 ## Requirements
 * Magento Open Source or Adobe Commerce version `2.4.x`
@@ -41,3 +41,4 @@ Navigate to `Reports -> Patch Status -> Quality Patches` in the admin area
 [gpl]:https://www.gnu.org/licenses/gpl-3.0.en.html
 [author]:https://aimes.dev/
 [hyva-dashboard]:https://docs.hyva.io/hyva-commerce/features/admin-dashboard/index.html
+[dashboard-integration]:https://github.com/robaimes/magento2-quality-patches-ui-hyva-dashboard-widget
