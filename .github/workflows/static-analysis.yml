@@ -1,0 +1,21 @@
+name: Static Analysis
+run-name: Run static analysis checks on ${{github.ref_name}}
+on: [push]
+permissions:
+  contents: read
+jobs:
+  composer-normalize:
+    name: Composer Normalize
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest changes
+        uses: actions/checkout@v4
+
+      - name: Setup tooling
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: ergebnis/composer-normalize
+
+      - name: Run composer normalize
+        run: composer normalize --dry-run --diff

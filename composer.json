@@ -1,10 +1,10 @@
 {
     "name": "aimes/module-quality-patches-ui",
-    "type": "magento2-module",
     "description": "Admin panel GUI for reporting status of Magento Quality Patches",
     "license": [
         "GPL-3.0-or-later"
     ],
+    "type": "magento2-module",
     "authors": [
         {
             "name": "Rob Aimes",
