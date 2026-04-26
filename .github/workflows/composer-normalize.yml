@@ -1,0 +1,19 @@
+name: Composer Normalize
+on: [push]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest changes
+        uses: actions/checkout@v4
+
+      - name: Setup tooling
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: ergebnis/composer-normalize
+
+      - name: Run composer normalize
+        run: composer normalize --dry-run --diff
