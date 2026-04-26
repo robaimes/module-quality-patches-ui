@@ -16,7 +16,7 @@ jobs:
           tools: ergebnis/composer-normalize
   composer-normalize:
     runs-on: ubuntu-latest
+    needs: [build]
     steps:
       - name: Run composer normalize
-        needs: build
         run: composer normalize --dry-run --diff
