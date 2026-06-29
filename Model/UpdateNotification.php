@@ -6,6 +6,8 @@
 
 namespace Aimes\QualityPatchesUi\Model;
 
+// phpcs:disable Generic.Files.LineLength.TooLong
+
 use Aimes\Substratum\Model\ComposerVersion;
 use Magento\Framework\Message\ManagerInterface;
 

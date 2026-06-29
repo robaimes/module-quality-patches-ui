@@ -106,7 +106,7 @@ class QualityPatchesProvider extends DataProvider
 
         // This grid is assumed to match other grid components and as such functions as logical AND when filtering
         foreach ($filterGroups as $filterGroup) {
-            foreach ($filterGroup->getFilters() as $filter) {
+            foreach ($filterGroup->getFilters() ?? [] as $filter) {
                 $filters[] = $filter;
             }
         }
@@ -155,7 +155,7 @@ class QualityPatchesProvider extends DataProvider
     {
         $sortOrders = $searchCriteria->getSortOrders();
 
-        foreach ($sortOrders as $sortOrder) {
+        foreach ($sortOrders ?? [] as $sortOrder) {
             if (!$sortOrder->getField()) {
                 continue;
             }

@@ -9,11 +9,12 @@ declare(strict_types=1);
 
 namespace Aimes\QualityPatchesUi\Model;
 
+use Magento\CloudPatches\App\ContainerFactory;
 use Magento\CloudPatches\Application;
 use Magento\CloudPatches\Command\Process\ShowStatus;
-use Magento\CloudPatches\App\ContainerFactory;
 use Magento\CloudPatches\Command\Status;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Serialize\Serializer\Json;
 use ReflectionClass;
@@ -43,7 +44,7 @@ class QualityPatches
     public function __construct(
         ContainerFactory $containerFactory,
         Filesystem $filesystem,
-        Json $json
+        Json $json,
     ) {
         $this->containerFactory = $containerFactory;
         $this->filesystem = $filesystem;
@@ -54,6 +55,7 @@ class QualityPatches
      * Get all patches for the current Magento/software version
      *
      * @return array
+     * @throws LocalizedException
      */
     public function getAllPatches()
     {
@@ -81,13 +83,13 @@ class QualityPatches
             $application->get(Status::NAME)->run($input, $output);
             $patchInfo = $this->json->unserialize($output->fetch());
 
-            // Fix the seemingly random newline characters breaking up words
+            /** @var array $patchInfo */
             foreach ($patchInfo as &$patch) {
                 $patch['Title'] = $this->removeNewlines($patch['Title']);
             }
 
             $this->patches = $patchInfo;
-        } catch (ExceptionInterface $exception) {
+        } catch (ExceptionInterface) {
             $this->patches = [];
         }
 
@@ -100,30 +102,31 @@ class QualityPatches
      * @param string $id
      *
      * @return array|null
+     * @throws LocalizedException
      */
     public function getPatchById(string $id): ?array
     {
         $patches = $this->getAllPatches();
 
-        foreach ($patches as $key => $patch) {
-            if ($patch['Id'] === $id) {
-                return $patches[$key];
-            }
-        }
-
-        return null;
+        return array_find($patches, fn ($patch) => $patch['Id'] === $id);
     }
 
     /**
      * Get root path of the magento cloud patches package
      *
      * @return string
+     * @throws LocalizedException
      */
     private function getCloudPatchesBaseDir(): string
     {
         $applicationReflection = new ReflectionClass(Application::class);
         $filepath = $applicationReflection->getFileName();
 
+        if ($filepath === false) {
+            throw new LocalizedException(__('Could not find Cloud Patches application'));
+        }
+
+        // phpcs:ignore Magento2.Functions.DiscouragedFunction.DiscouragedWithAlternative
         return dirname($filepath, 2);
     }
 
