@@ -17,8 +17,11 @@
         "magento/magento-cloud-patches": "^1.0.20",
         "magento/quality-patches": "^1.1"
     },
+    "conflict": {
+        "aimes/module-quality-patches-ui-hyva-dashboard-widget": "*"
+    },
     "suggest": {
-        "aimes/module-quality-patches-ui-hyva-dashboard-widget": "Hyvä Dashboard compatibility — Adds a Patch Status dashboard widget"
+        "hyva-themes/commerce-module-admin-dashboard-api": "Hyvä Dashboard compatibility — Requires Hyvä Commerce license"
     },
     "autoload": {
         "psr-4": {
