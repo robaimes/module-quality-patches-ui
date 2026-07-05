@@ -10,7 +10,7 @@ Compatible with Hyvä Commerce
 - Notify users of any updates available to the following packages (when viewing the grid), as a new version may contain new patches:
   - `magento/magento-cloud-patches`
   - `magento/quality-patches`
-- Integration with [Hyvä Admin Dashboard][hyva-dashboard], if installed
+- Integration with [Hyvä Admin Dashboard][hyva-dashboard]
 
 ## Requirements
 * Magento Open Source or Adobe Commerce version `2.4.x`

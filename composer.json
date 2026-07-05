@@ -14,14 +14,12 @@
     ],
     "require": {
         "aimes/magento2-module-substratum": "^1.0",
+        "hyva-themes/commerce-module-admin-dashboard-api": "^2.0 || ^3.0",
         "magento/magento-cloud-patches": "^1.0.20",
         "magento/quality-patches": "^1.1"
     },
     "conflict": {
         "aimes/module-quality-patches-ui-hyva-dashboard-widget": "*"
-    },
-    "suggest": {
-        "hyva-themes/commerce-module-admin-dashboard-api": "Hyvä Dashboard compatibility — Requires Hyvä Commerce license"
     },
     "autoload": {
         "psr-4": {
