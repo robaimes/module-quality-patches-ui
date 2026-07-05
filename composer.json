@@ -14,11 +14,12 @@
     ],
     "require": {
         "aimes/magento2-module-substratum": "^1.0",
+        "hyva-themes/commerce-module-admin-dashboard-api": "^2.0 || ^3.0",
         "magento/magento-cloud-patches": "^1.0.20",
         "magento/quality-patches": "^1.1"
     },
-    "suggest": {
-        "aimes/module-quality-patches-ui-hyva-dashboard-widget": "Hyvä Dashboard compatibility — Adds a Patch Status dashboard widget"
+    "conflict": {
+        "aimes/module-quality-patches-ui-hyva-dashboard-widget": "*"
     },
     "autoload": {
         "psr-4": {
